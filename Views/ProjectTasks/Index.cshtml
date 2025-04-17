@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Smart_PM.Models.ProjectTask>
+
+<h1>Task list</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">New Task</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Sprint</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Title</td>
+                <td>@item.Description</td>
+                <td>@item.DueDate.ToString("yyyy-MM-dd")</td>
+                <td>@item.Priority</td>
+                <td>@item.Status</td>
+                <td>@item.Tag</td>
+                <td>@item.Sprint?.Title</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ProjectTaskId" class="btn btn-sm btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@item.ProjectTaskId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

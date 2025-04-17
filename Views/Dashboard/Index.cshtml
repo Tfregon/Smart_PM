@@ -1,0 +1,103 @@
+﻿@model List<Smart_PM.Models.ProjectTask>
+@using Smart_PM.Models
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<h1>Dashboard</h1>
+
+<form method="get" class="row g-3 mb-4">
+    <div class="col-md-3">
+        <label class="form-label">Project</label>
+        <select name="projectId" class="form-select">
+            <option value="">All</option>
+            @foreach (var project in (SelectList)ViewBag.Projects)
+            {
+                var isSelected = Context.Request.Query["projectId"] == project.Value;
+                <option value="@project.Value" selected="@(isSelected ? "selected" : null)">@project.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-3">
+        <label class="form-label">Sprint</label>
+        <select name="sprintId" class="form-select">
+            <option value="">All</option>
+            @foreach (var sprint in (SelectList)ViewBag.Sprints)
+            {
+                var isSelected = Context.Request.Query["sprintId"] == sprint.Value;
+                <option value="@sprint.Value" selected="@(isSelected ? "selected" : null)">@sprint.Text</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Priority</label>
+        <select name="priority" class="form-select">
+            <option value="">All</option>
+            @foreach (var p in Enum.GetValues(typeof(Priority)))
+            {
+                var isSelected = Context.Request.Query["priority"] == p.ToString();
+                <option value="@p" selected="@(isSelected ? "selected" : null)">@p</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-2">
+        <label class="form-label">Status</label>
+        <select name="status" class="form-select">
+            <option value="">All</option>
+            @foreach (var s in Enum.GetValues(typeof(Status)))
+            {
+                var isSelected = Context.Request.Query["status"] == s.ToString();
+                <option value="@s" selected="@(isSelected ? "selected" : null)">@s</option>
+            }
+        </select>
+    </div>
+
+    <div class="col-md-2 d-flex align-items-end">
+        <button type="submit" class="btn btn-primary w-100">Filter</button>
+    </div>
+</form>
+
+<table class="table table-bordered table-hover">
+    <thead class="table-light">
+        <tr>
+            <th>Title</th>
+            <th>Due Date</th>
+            <th>Priority</th>
+            <th>Status</th>
+            <th>Tag</th>
+            <th>Sprint</th>
+            <th>Project</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>@task.Title</td>
+                <td>@task.DueDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <span class="badge bg-@task.Priority.ToString().ToLower() text-dark">
+                        @task.Priority
+                    </span>
+                </td>
+                <td>
+                    @if (task.Status == Status.Completed)
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">In Progress</span>
+                    }
+                </td>
+                <td>@task.Tag</td>
+                <td>@task.Sprint?.Title</td>
+                <td>@task.Sprint?.Project?.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

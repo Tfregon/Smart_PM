@@ -20,3 +20,15 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.badge.low {
+    background-color: #6c757d;
+}
+
+.badge.medium {
+    background-color: #ffc107;
+}
+
+.badge.high {
+    background-color: #dc3545;
+}
