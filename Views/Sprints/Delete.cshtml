@@ -1,0 +1,15 @@
+﻿@model Smart_PM.Models.Sprint
+
+<h1>Delete Sprint</h1>
+
+<h3>Are you sure you want to delete this Sprint?</h3>
+
+<div>
+    <strong>@Model.Title</strong> (Project: @Model.Project?.Name)
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="SprintId" />
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

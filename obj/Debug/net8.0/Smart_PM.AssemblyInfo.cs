@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Smart_PM")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6622d4ef17e17f5e4065ad7863f309bc3570b8f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de75334efd7981eb48061dc40090caa4eb3ba9a5")]
 [assembly: System.Reflection.AssemblyProductAttribute("Smart_PM")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Smart_PM")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
